@@ -18,6 +18,23 @@ const layers = document.getElementById('layers') as HTMLFieldSetElement;
 const submitBtn = form.querySelector('button') as HTMLButtonElement;
 const routePanel = document.getElementById('route-text-panel') as HTMLDetailsElement;
 const routeTextEl = document.getElementById('route-text') as HTMLPreElement;
+const uiPanel = document.getElementById('ui') as HTMLDivElement;
+const uiToggle = document.getElementById('ui-toggle') as HTMLButtonElement;
+
+const UI_COLLAPSED_KEY = 'flight-globe:ui-collapsed';
+function setCollapsed(collapsed: boolean) {
+  uiPanel.classList.toggle('collapsed', collapsed);
+  uiToggle.setAttribute('aria-expanded', String(!collapsed));
+  uiToggle.setAttribute('aria-label', collapsed ? 'Expand panel' : 'Collapse panel');
+  uiToggle.title = collapsed ? 'Expand panel' : 'Collapse panel';
+}
+const storedCollapsed = localStorage.getItem(UI_COLLAPSED_KEY);
+setCollapsed(storedCollapsed === null ? window.innerWidth < 640 : storedCollapsed === '1');
+uiToggle.addEventListener('click', () => {
+  const next = !uiPanel.classList.contains('collapsed');
+  setCollapsed(next);
+  localStorage.setItem(UI_COLLAPSED_KEY, next ? '1' : '0');
+});
 
 const LAYER_COLORS = {
   'great-circle': 0x6aa9ff,

@@ -27,12 +27,58 @@ html, body {
   z-index: 10;
   background: rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(6px);
-  padding: 12px 14px;
+  padding: 8px 12px 12px;
   border-radius: 10px;
   max-width: 340px;
   font-size: 14px;
   border: 1px solid rgba(255, 255, 255, 0.08);
+  max-height: calc(100vh - 32px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
+
+#ui-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+#ui-header .title {
+  color: #ccc;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+#ui-toggle {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  color: #ccc;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#ui-toggle::before { content: '\2013'; }
+#ui.collapsed #ui-toggle::before { content: '+'; }
+#ui-toggle:hover { background: rgba(255, 255, 255, 0.1); }
+
+#ui-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow-y: auto;
+  min-height: 0;
+}
+#ui.collapsed #ui-body { display: none; }
+#ui.collapsed { padding-bottom: 8px; }
 
 #flight-form {
   display: flex;
@@ -129,4 +175,22 @@ button:disabled { opacity: 0.6; cursor: progress; }
   font-size: 11px;
   line-height: 1.4;
   color: #ddd;
+}
+
+@media (max-width: 640px) {
+  #ui {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    max-width: none;
+    padding: 6px 10px 10px;
+    font-size: 13px;
+  }
+  #ui.collapsed {
+    right: auto;
+    max-width: 200px;
+  }
+  #flight-form { flex-wrap: wrap; }
+  #flight-input { min-width: 0; }
+  #route-text { max-height: 120px; }
 }
