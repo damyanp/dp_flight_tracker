@@ -65,6 +65,18 @@ app.get('/api/flight/:number/track', async (req, res, next) => {
   }
 });
 
+// In production we also serve the built client from this same process.
+// The compiled server lives at <repo>/server/dist/index.js, so the client
+// build output is two directories up at <repo>/client/dist.
+const clientDist = resolve(here, '../../client/dist');
+if (existsSync(clientDist)) {
+  console.log(`[server] serving static client from ${clientDist}`);
+  app.use(express.static(clientDist, { index: 'index.html' }));
+  app.get(/^\/(?!api\/|health\b).*/, (_req, res) => {
+    res.sendFile(resolve(clientDist, 'index.html'));
+  });
+}
+
 app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
   if (err instanceof FlightAwareError) {
     res.status(err.status).json({ error: err.message, code: err.code });
@@ -77,3 +89,4 @@ app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
 app.listen(PORT, () => {
   console.log(`[server] listening on http://localhost:${PORT}`);
 });
+

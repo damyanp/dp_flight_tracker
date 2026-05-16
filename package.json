@@ -3,6 +3,9 @@
   "private": true,
   "version": "0.1.0",
   "description": "Explore flight routes on a 3D globe.",
+  "engines": {
+    "node": "22.x"
+  },
   "workspaces": [
     "client",
     "server"
