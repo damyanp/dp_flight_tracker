@@ -1,0 +1,132 @@
+:root {
+  color-scheme: dark;
+  font-family: system-ui, sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #000;
+  color: #eee;
+  overflow: hidden;
+}
+
+#globe {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+}
+
+#ui {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  padding: 12px 14px;
+  border-radius: 10px;
+  max-width: 340px;
+  font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#flight-form {
+  display: flex;
+  gap: 8px;
+}
+
+#flight-input {
+  flex: 1;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #111;
+  color: #eee;
+  font: inherit;
+  text-transform: uppercase;
+}
+
+#flight-input:focus {
+  outline: none;
+  border-color: #6aa9ff;
+}
+
+button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #6aa9ff;
+  background: #1e3a66;
+  color: #eee;
+  cursor: pointer;
+  font: inherit;
+}
+
+button:hover:not(:disabled) { background: #2a4f8a; }
+button:disabled { opacity: 0.6; cursor: progress; }
+
+#status {
+  margin-top: 8px;
+  min-height: 1em;
+  color: #ffb86b;
+}
+
+#status.error { color: #ff7676; }
+#status.ok { color: #8fe28f; }
+
+#info {
+  margin-top: 6px;
+  line-height: 1.4;
+  color: #ccc;
+}
+
+#info .row { display: flex; gap: 6px; }
+#info .label { color: #888; min-width: 60px; }
+
+#layers {
+  margin-top: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 6px 10px 8px;
+}
+#layers[hidden] { display: none; }
+#layers legend { padding: 0 4px; color: #888; font-size: 12px; }
+#layers label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 2px 0;
+}
+#layers .swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+#layers .count { color: #888; font-size: 12px; margin-left: auto; }
+
+#route-text-panel {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #bbb;
+}
+#route-text-panel[hidden] { display: none; }
+#route-text-panel summary { cursor: pointer; color: #6aa9ff; }
+#route-text {
+  margin: 6px 0 0;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 4px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-height: 180px;
+  overflow: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #ddd;
+}

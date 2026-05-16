@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flight Globe</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="ui">
+      <form id="flight-form">
+        <input
+          id="flight-input"
+          type="text"
+          placeholder="Flight number e.g. VIR155"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button type="submit">Show route</button>
+      </form>
+      <div id="status"></div>
+      <div id="info"></div>
+      <fieldset id="layers" hidden>
+        <legend>Layers</legend>
+        <label
+          ><input type="checkbox" data-layer="great-circle" checked /><span
+            class="swatch"
+            style="background: #6aa9ff"
+          ></span
+          >Great-circle</label
+        >
+        <label
+          ><input type="checkbox" data-layer="filed" checked /><span
+            class="swatch"
+            style="background: #ffffff"
+          ></span
+          >Filed route <span class="count" data-count="filed"></span
+        ></label>
+        <label
+          ><input type="checkbox" data-layer="track" checked /><span
+            class="swatch"
+            style="background: #ff4d4d"
+          ></span
+          >Actual track <span class="count" data-count="track"></span
+        ></label>
+        <label
+          ><input type="checkbox" data-layer="waypoints" /><span
+            class="swatch"
+            style="background: #ffffff; border: 1px solid #888"
+          ></span
+          >Waypoints <span class="count" data-count="waypoints"></span
+        ></label>
+      </fieldset>
+      <details id="route-text-panel" hidden>
+        <summary>Raw filed route</summary>
+        <pre id="route-text"></pre>
+      </details>
+    </div>
+    <canvas id="globe"></canvas>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
